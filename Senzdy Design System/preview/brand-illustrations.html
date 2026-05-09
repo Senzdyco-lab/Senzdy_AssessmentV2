@@ -1,0 +1,20 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family:var(--font-sans); }
+  .row { display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
+  .slot { aspect-ratio: 4 / 3; border:1.5px dashed var(--pastel-blue-300);
+          background: var(--pastel-blue-100);
+          border-radius: 12px; display:flex; align-items:center; justify-content:center;
+          flex-direction:column; gap:6px; color: var(--pastel-blue-700); }
+  .slot .ic { font-size:22px; font-weight:700; opacity:.55; }
+  .slot .lbl { font-size:11px; font-family:ui-monospace,monospace; text-transform:uppercase; letter-spacing:.06em; opacity:.7; }
+  .note { grid-column: 1 / -1; font-size:12px; color: var(--fg-3); margin-top:4px; }
+</style></head><body>
+<div class="row">
+  <div class="slot"><div class="ic">+</div><div class="lbl">Brand image · TBD</div></div>
+  <div class="slot"><div class="ic">+</div><div class="lbl">Brand image · TBD</div></div>
+  <div class="slot"><div class="ic">+</div><div class="lbl">Brand image · TBD</div></div>
+  <div class="note">Reserved for client-supplied imagery. Existing template SVGs deprecated.</div>
+</div>
+</body></html>

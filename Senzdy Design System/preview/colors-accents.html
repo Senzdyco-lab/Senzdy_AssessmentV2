@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body{margin:0;padding:20px;background:#fff;font-family:"Mali",system-ui,sans-serif;color:#1f3b56;}
+  .row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+  .row + .row{margin-top:10px;}
+  .swatch{aspect-ratio:1.4/1;border-radius:14px;padding:10px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #E6EEF6;box-shadow:0 4px 12px rgba(46,128,184,.06);}
+  .swatch .name{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  .swatch .hex{font-size:11px;font-family:ui-monospace,monospace;opacity:.9;}
+  .light{color:#fff;} .dark{color:#1f3b56;}
+  .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#5a7691;font-weight:700;margin:0 0 6px 2px;}
+</style></head><body>
+
+<div class="lbl">Brand accents</div>
+<div class="row">
+  <div class="swatch dark"  style="background:#6FBEEC"><span class="name">Bellbell · Blue</span><span class="hex">#6FBEEC</span></div>
+  <div class="swatch light" style="background:#2E80B8"><span class="name">Blue · 700</span><span class="hex">#2E80B8</span></div>
+  <div class="swatch dark"  style="background:#DDEEFB"><span class="name">Blue · 100</span><span class="hex">#DDEEFB</span></div>
+  <div class="swatch dark"  style="background:#F7A6C0"><span class="name">Bellbell · Pink</span><span class="hex">#F7A6C0</span></div>
+  <div class="swatch dark"  style="background:#FDE6EE"><span class="name">Pink · 100</span><span class="hex">#FDE6EE</span></div>
+</div>
+
+<div class="lbl" style="margin-top:14px">Graph series (preserved)</div>
+<div class="row">
+  <div class="swatch light" style="background:#2E9E50"><span class="name">Preferences</span><span class="hex">#2E9E50</span></div>
+  <div class="swatch light" style="background:#D32F2F"><span class="name">Arousals</span><span class="hex">#D32F2F</span></div>
+  <div class="swatch light" style="background:#E07A2A"><span class="name">Warn · Worry</span><span class="hex">#E07A2A</span></div>
+  <div class="swatch light" style="background:#7C5BC9"><span class="name">Flow</span><span class="hex">#7C5BC9</span></div>
+  <div class="swatch dark"  style="background:#F4F8FC"><span class="name">Track</span><span class="hex">#F4F8FC</span></div>
+</div>
+
+</body></html>

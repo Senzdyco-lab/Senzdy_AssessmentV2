@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  :root{
+    --p-blue:#6FBEEC; --p-blue-700:#2E80B8; --p-blue-100:#DDEEFB;
+    --p-pink:#F7A6C0; --p-pink-100:#FDE6EE;
+    --ink:#1f3b56; --ink-2:#5a7691; --line:#E6EEF6;
+  }
+  body{margin:0;padding:20px;background:#fff;color:var(--ink);font-family:"Mali",system-ui,sans-serif;}
+  .card{border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 8px 22px rgba(46,128,184,.06);}
+  .head{background:linear-gradient(135deg,var(--p-blue-700),var(--p-blue));color:#fff;padding:14px 18px;font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px;}
+  .head .ic{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:14px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  td{padding:11px 16px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:middle;}
+  tr:last-child td{border-bottom:none;}
+  td.k{width:140px;}
+  .pill{display:inline-block;padding:4px 12px;border-radius:999px;font-weight:700;font-size:12px;background:#F4F8FC;color:var(--p-blue-700);}
+  tr.l1 .pill{background:var(--p-pink-100);color:#c14a76;}
+  tr.l2 .pill{background:#FDE9D9;color:#a55a14;}
+  tr.l3 .pill{background:var(--p-blue-100);color:var(--p-blue-700);}
+  tr.l4 .pill{background:#D6ECDB;color:#2f7a4a;}
+  tr.l5 .pill{background:linear-gradient(135deg,var(--p-blue),var(--p-pink));color:#fff;}
+  td.d{color:var(--ink-2);}
+</style></head><body>
+<div class="card">
+  <div class="head"><span class="ic">📋</span><span>เกณฑ์การให้คะแนน · Scoring scale</span></div>
+  <table>
+    <tr class="l1"><td class="k"><span class="pill">ไม่เคย</span></td><td class="d">ไม่เคยรู้สึกชอบ</td></tr>
+    <tr class="l2"><td class="k"><span class="pill">น้อยครั้ง</span></td><td class="d">นาน ๆ จึงจะรู้สึกชอบสักครั้งหนึ่ง</td></tr>
+    <tr class="l3"><td class="k"><span class="pill">บางครั้ง</span></td><td class="d">รู้สึกชอบเป็นบางครั้ง</td></tr>
+    <tr class="l4"><td class="k"><span class="pill">บ่อยครั้ง</span></td><td class="d">รู้สึกชอบเกือบทุกครั้ง</td></tr>
+    <tr class="l5"><td class="k"><span class="pill">ทุกครั้ง</span></td><td class="d">รู้สึกชอบทุกครั้ง</td></tr>
+  </table>
+</div>
+</body></html>

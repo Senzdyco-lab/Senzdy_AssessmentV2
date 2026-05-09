@@ -1,0 +1,85 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  :root{
+    --p-blue:#6FBEEC; --p-blue-700:#2E80B8; --p-blue-100:#DDEEFB;
+    --p-pink:#F7A6C0; --p-pink-100:#FDE6EE;
+    --ink:#1f3b56; --ink-2:#5a7691; --line:#E6EEF6; --track:#F4F8FC;
+  }
+  body{margin:0;padding:18px;background:#FAFBFD;color:var(--ink);font-family:"Mali",system-ui,sans-serif;}
+  .stack{display:grid;gap:16px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 22px rgba(46,128,184,.06);padding:18px 20px;}
+
+  /* Header row */
+  .hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .hdr-l{display:flex;align-items:center;gap:10px;}
+  .ic{width:32px;height:32px;border-radius:10px;background:var(--p-blue-100);display:grid;place-items:center;color:var(--p-blue-700);font-size:16px;}
+  .sec{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);font-weight:700;}
+  .pos{font-size:11px;font-weight:600;color:var(--ink-2);}
+  .pos b{color:var(--p-blue-700);}
+
+  /* Progress bar */
+  .bar{height:5px;background:var(--track);border-radius:999px;overflow:hidden;margin-bottom:14px;}
+  .bar>i{display:block;height:100%;width:60%;background:linear-gradient(90deg,var(--p-blue),var(--p-pink));border-radius:inherit;}
+
+  .q{font-size:18px;font-weight:600;line-height:1.4;margin-bottom:14px;color:var(--ink);}
+  .seg{display:flex;background:var(--track);border-radius:999px;padding:4px;gap:2px;}
+  .seg button{flex:1;font:inherit;font-size:12px;font-weight:600;padding:9px 6px;border:none;background:transparent;color:var(--ink-2);border-radius:999px;cursor:pointer;}
+  .seg button.on{background:var(--p-blue-700);color:#fff;box-shadow:0 4px 10px rgba(46,128,184,.25);}
+
+  /* Footer with skip + nav */
+  .foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px;}
+  .skip{font:inherit;font-size:12px;color:var(--ink-2);background:none;border:none;cursor:pointer;text-decoration:underline;}
+  .btns{display:flex;gap:8px;}
+  .btn{font:inherit;font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;border:none;cursor:pointer;}
+  .btn.g{background:#fff;color:var(--p-blue-700);border:1.5px solid var(--line);}
+  .btn.p{background:var(--p-blue-700);color:#fff;}
+
+  /* Variant B — minimal w/ left accent */
+  .card.b{border-left:4px solid var(--p-pink);border-radius:6px 20px 20px 6px;}
+
+  /* Variant C — image / context above */
+  .ctx{display:flex;align-items:center;gap:12px;padding:10px 12px;background:linear-gradient(135deg,var(--p-blue-100),var(--p-pink-100));border-radius:14px;margin-bottom:14px;font-size:13px;color:var(--ink-2);}
+  .ctx .em{font-size:22px;}
+</style></head><body>
+<div class="stack">
+
+  <!-- Variant A — Default (recommended) -->
+  <div class="card">
+    <div class="hdr">
+      <div class="hdr-l"><span class="ic">👁</span><span class="sec">Sight system</span></div>
+      <span class="pos">Q <b>3</b> / 12</span>
+    </div>
+    <div class="bar"><i></i></div>
+    <div class="q">ชอบเวลามีผู้คนอยู่รายรอบ</div>
+    <div class="seg"><button>ไม่เคย</button><button>น้อย</button><button class="on">บางครั้ง</button><button>บ่อย</button><button>ทุกครั้ง</button></div>
+    <div class="foot">
+      <button class="skip">Skip question</button>
+      <div class="btns"><button class="btn g">← Back</button><button class="btn p">Next →</button></div>
+    </div>
+  </div>
+
+  <!-- Variant B — Minimal w/ accent -->
+  <div class="card b">
+    <div class="hdr">
+      <div class="hdr-l"><span class="sec" style="color:var(--p-pink)">● Auditory</span></div>
+      <span class="pos">04 / 12</span>
+    </div>
+    <div class="q">ชอบฟังเสียงดนตรีเบา ๆ ขณะทำงาน</div>
+    <div class="seg"><button>ไม่เคย</button><button>น้อย</button><button>บางครั้ง</button><button class="on">บ่อย</button><button>ทุกครั้ง</button></div>
+  </div>
+
+  <!-- Variant C — With contextual hint banner -->
+  <div class="card">
+    <div class="hdr">
+      <div class="hdr-l"><span class="ic" style="background:var(--p-pink-100);color:#a14a14">✋</span><span class="sec">Touch system</span></div>
+      <span class="pos">07 / 12</span>
+    </div>
+    <div class="ctx"><span class="em">💡</span><span>ลองนึกถึงสถานการณ์ในชีวิตประจำวันที่ผ่านมาในช่วง 1 สัปดาห์</span></div>
+    <div class="q">ชอบสัมผัสผ้านุ่ม ๆ หรือของที่มีพื้นผิวอ่อน</div>
+    <div class="seg"><button>ไม่เคย</button><button>น้อย</button><button class="on">บางครั้ง</button><button>บ่อย</button><button>ทุกครั้ง</button></div>
+  </div>
+</div>
+</body></html>

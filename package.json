@@ -1,0 +1,35 @@
+{
+  "name": "senzdy_assessmentv2",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Senzdy — Personal Sensory: Thai Sensory Patterns Assessment (V2)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Senzdyco-lab/Senzdy_AssessmentV2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Senzdyco-lab/Senzdy_AssessmentV2/issues"
+  },
+  "homepage": "https://github.com/Senzdyco-lab/Senzdy_AssessmentV2#readme",
+  "dependencies": {
+    "@ant-design/icons": "^5.5.1",
+    "antd": "^5.21.0",
+    "html-to-image": "^1.11.13",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

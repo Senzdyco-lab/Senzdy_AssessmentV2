@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Senzdy · Sensory Assessment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  :root{
+    --p-blue:#6FBEEC; --p-blue-700:#2E80B8; --p-blue-100:#DDEEFB;
+    --p-pink:#F7A6C0; --p-pink-100:#FDE6EE;
+    --ink:#1f3b56; --ink-2:#5a7691; --line:#E6EEF6; --track:#F4F8FC;
+    --green:#2E9E50; --red:#D32F2F;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#fff;color:var(--ink);font-family:"Mali",system-ui,sans-serif;}
+  body{
+    background:
+      radial-gradient(900px 500px at 110% -10%, var(--p-pink-100), transparent 60%),
+      radial-gradient(800px 500px at -10% 110%, var(--p-blue-100), transparent 60%),
+      #fff;
+    min-height:100vh;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:24px 20px 80px;}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:0 4px 20px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:24px;color:var(--p-blue-700);}
+  .brand .mark{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--p-blue-100),var(--p-pink-100));display:grid;place-items:center;font-size:20px;}
+
+  /* Cards */
+  .card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 8px 24px rgba(46,128,184,.06);padding:22px;margin-bottom:14px;}
+
+  /* Hero */
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:24px 0;}
+  .hero h1{font-size:36px;line-height:1.2;font-weight:700;color:var(--p-blue-700);margin:0 0 12px;}
+  .hero p{font-size:18px;color:var(--ink-2);margin:0 0 20px;line-height:1.5;}
+  .ages{display:flex;gap:12px;flex-wrap:wrap;}
+  .age{flex:1;min-width:140px;padding:18px 16px;border-radius:18px;background:#fff;border:2px solid var(--line);cursor:pointer;text-align:left;transition:.2s;font:inherit;color:inherit;}
+  .age:hover{border-color:var(--p-blue);transform:translateY(-2px);box-shadow:0 12px 28px rgba(46,128,184,.12);}
+  .age .num{font-size:28px;font-weight:700;color:var(--p-blue-700);}
+  .age .lbl{font-size:13px;color:var(--ink-2);}
+  .hero-art{aspect-ratio:1;background:radial-gradient(circle at 50% 60%, var(--p-pink-100), var(--p-blue-100));border-radius:32px;display:grid;place-items:center;font-size:120px;}
+  @media(max-width:640px){.hero{grid-template-columns:1fr}.hero-art{aspect-ratio:1.6}}
+
+  /* Progress */
+  .prog{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:13px;color:var(--ink-2);}
+  .bar{flex:1;height:8px;background:var(--track);border-radius:999px;overflow:hidden;}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--p-blue),var(--p-pink));border-radius:inherit;transition:width .3s;}
+
+  /* Section header */
+  .sec-title{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--p-blue-700);font-size:18px;margin:0 0 4px;}
+  .sec-title .ic{width:32px;height:32px;border-radius:10px;background:var(--p-blue-100);display:grid;place-items:center;font-size:18px;}
+  .sec-sub{font-size:12px;color:var(--ink-2);margin:0 0 16px 42px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;}
+
+  /* Question */
+  .q{padding:14px 4px;border-bottom:1px dashed var(--line);}
+  .q:last-of-type{border-bottom:none}
+  .q-meta{font-size:11px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:6px;}
+  .q-meta .pf{color:var(--green);} .q-meta .ar{color:var(--red);}
+  .q-text{font-size:16px;font-weight:500;margin-bottom:10px;color:var(--ink);}
+  .seg{display:flex;background:var(--track);border-radius:999px;padding:4px;gap:2px;}
+  .seg button{flex:1;font:inherit;font-size:12px;font-weight:600;padding:9px 4px;border:none;background:transparent;color:var(--ink-2);border-radius:999px;cursor:pointer;transition:.15s;}
+  .seg button:hover:not(.on){color:var(--p-blue-700);}
+  .seg button.on{background:var(--p-blue-700);color:#fff;box-shadow:0 4px 10px rgba(46,128,184,.25);}
+
+  /* Buttons */
+  .row{display:flex;gap:12px;justify-content:space-between;margin-top:18px;align-items:center;}
+  .btn{font:inherit;font-size:15px;font-weight:700;padding:12px 22px;border-radius:999px;border:none;cursor:pointer;transition:.2s;}
+  .btn-pri{background:var(--p-blue-700);color:#fff;box-shadow:0 8px 20px rgba(46,128,184,.3);}
+  .btn-pri:hover{background:var(--p-blue);transform:translateY(-1px);}
+  .btn-pri:disabled{background:#EEF2F6;color:#A6B5C5;box-shadow:none;cursor:not-allowed;}
+  .btn-ghost{background:#fff;color:var(--p-blue-700);border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--p-pink);color:#d05a82;}
+
+  /* Result */
+  .result-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;}
+  @media(max-width:720px){.result-grid{grid-template-columns:1fr}}
+  table.rt{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:14px;}
+  table.rt th{font-size:11px;text-transform:uppercase;color:var(--ink-2);text-align:left;padding:6px 10px;font-weight:600;letter-spacing:.06em;}
+  table.rt td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px;}
+  table.rt td:first-child{border-left:1px solid var(--line);border-radius:12px 0 0 12px;font-weight:600;}
+  table.rt td:last-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0;}
+  .chip{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:700;}
+  .chip.flow{background:#E2D6F4;color:#5b3a99}
+  .chip.passion{background:#FFE3CC;color:#a35a14}
+  .chip.relax{background:#DBEFE1;color:#2f7a4a}
+  .chip.control{background:#D6EAF6;color:#2E80B8}
+  .chip.worry{background:#FFE0CD;color:#a14a14}
+  .chip.anxiety{background:#FBD3D3;color:#8c2020}
+  .chip.avoider{background:#F0E0F8;color:#732e95}
+  .chip.boredom{background:#E3E6EA;color:#54647a}
+  .chip.apathy{background:#DCE0E5;color:#475569}
+  .chip.seeker{background:#FFE6F0;color:#b13a73}
+  .legend{display:flex;gap:18px;justify-content:center;margin-top:6px;font-size:13px;color:var(--ink-2);}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+  .radar{aspect-ratio:1;display:grid;place-items:center;}
+  .radar svg{width:100%;height:auto;max-width:360px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="application/json" id="assessment-data">
+{
+  "systems": [
+    {"key":"sight","label":"Sight","th":"การมองเห็น","icon":"👁",
+     "P":["ชอบมองคนที่แต่งกายโทนสีสดใส","ชอบดูภาพ/วิดีโอที่มีสีสันหลากหลาย","สนุกกับการดูสิ่งของเคลื่อนไหว"],
+     "A":["รู้สึกตื่นตัวเมื่ออยู่ในห้องที่มีแสงจ้า","สังเกตเห็นรายละเอียดเล็ก ๆ ได้รวดเร็ว","รู้สึกถูกรบกวนเมื่อเห็นแสงกะพริบ"]},
+    {"key":"auditory","label":"Auditory","th":"การได้ยิน","icon":"👂",
+     "P":["ชอบฟังเสียงดนตรีเบา ๆ ขณะทำงาน","สนุกกับการพูดคุยในสถานที่คึกคัก","ชอบเสียงธรรมชาติ เช่น ฝน ทะเล"],
+     "A":["รู้สึกตื่นตัวเมื่อได้ยินเสียงดัง","ได้ยินเสียงเล็ก ๆ ที่คนอื่นไม่ได้ยิน","ตกใจง่ายกับเสียงไม่คาดคิด"]},
+    {"key":"olfactory","label":"Olfactory & Gustation","th":"การได้กลิ่น & รส","icon":"👃",
+     "P":["ชอบกลิ่นหอมจากดอกไม้หรือเทียน","สนุกกับการลองอาหารรสชาติใหม่ ๆ","ชอบกลิ่นกาแฟหรือขนมอบ"],
+     "A":["ได้กลิ่นที่เปลี่ยนไปในห้องได้เร็ว","ไวต่อรสเผ็ดหรือเปรี้ยวมาก","รู้สึกไม่สบายเมื่อได้กลิ่นแรง"]},
+    {"key":"touch","label":"Touch","th":"การสัมผัส","icon":"✋",
+     "P":["ชอบสัมผัสผ้านุ่ม ๆ หรือพื้นผิวอ่อน","สนุกกับการกอดหรือถูกสัมผัสเบา ๆ","ชอบเล่นกับน้ำหรือทราย"],
+     "A":["รู้สึกระคายเคืองกับเสื้อผ้าที่คับ","ไม่ชอบให้คนอื่นมาแตะตัวอย่างไม่คาดคิด","รู้สึกตื่นตัวเมื่อสัมผัสของเย็นจัด/ร้อนจัด"]},
+    {"key":"vestibular","label":"Vestibular","th":"การทรงตัว","icon":"🧘",
+     "P":["ชอบการเคลื่อนไหวเช่น แกว่งชิงช้า","สนุกกับเครื่องเล่นที่หมุนหรือกระโดด","ชอบเดินขึ้น-ลงบันได/ปีนป่าย"],
+     "A":["เวียนหัวง่ายเมื่อหมุนหรือเปลี่ยนท่า","กลัวความสูงหรือพื้นไม่มั่นคง","ตื่นตัวเมื่อรถเคลื่อนกะทันหัน"]},
+    {"key":"proprio","label":"Proprioceptive","th":"การรับรู้ร่างกาย","icon":"💪",
+     "P":["ชอบกอดแน่น ๆ หรือผ้าห่มหนัก","สนุกกับการดันหรือยกของหนัก","ชอบกระโดดหรือกระแทกตัวเบา ๆ"],
+     "A":["รู้สึกตื่นตัวเมื่อออกแรงมาก","ชอบเคี้ยวหมากฝรั่ง/ของแข็ง ๆ","รู้สึกดีเมื่อได้บีบของนุ่ม ๆ"]}
+  ]
+}
+</script>
+
+<script type="text/babel">
+
+const { useState, useMemo } = React;
+
+const DATA = JSON.parse(document.getElementById('assessment-data').textContent).systems;
+const SCALE = ["ไม่เคย", "น้อย", "บางครั้ง", "บ่อย", "ทุกครั้ง"];
+
+// --- Scoring ---
+// Each question 0..4. Per system: P sum / Pmax * 100 → preference%; same for A.
+// Bands → label codes
+function band(pct) {
+  if (pct >= 84) return "HH";
+  if (pct >= 67) return "HL";
+  if (pct >= 51) return "MH";
+  if (pct >= 34) return "ML";
+  if (pct >= 17) return "LH";
+  return "LL";
+}
+
+// Result matrix: keyed [arousal][preference] → {name, kind}
+const MATRIX = {
+  HH: { LL: ["Really Anxiety", "anxiety"], LH: ["Mini Avoider", "avoider"], ML: ["Almost Passion", "passion"], MH: ["Really Passion", "passion"], HL: ["Almost Flow", "flow"], HH: ["Really Flow", "flow"] },
+  HL: { LL: ["Almost Avoider", "avoider"], LH: ["Avoider", "avoider"], ML: ["Passion", "passion"], MH: ["Mini Passion", "passion"], HL: ["Flow", "flow"], HH: ["Flow", "flow"] },
+  MH: { LL: ["Really Worry", "worry"], LH: ["Worry", "worry"], ML: ["Relax", "relax"], MH: ["Really Relax", "relax"], HL: ["Mini Control", "control"], HH: ["Control", "control"] },
+  ML: { LL: ["Worry", "worry"], LH: ["Mini Relax", "relax"], ML: ["Really Relax", "relax"], MH: ["Almost Relax", "relax"], HL: ["Control", "control"], HH: ["Really Control", "control"] },
+  LH: { LL: ["Apathy", "apathy"], LH: ["Apathy", "apathy"], ML: ["Mini Boredom", "boredom"], MH: ["Boredom", "boredom"], HL: ["Mini Seeker", "seeker"], HH: ["Seeker", "seeker"] },
+  LL: { LL: ["Really Apathy", "apathy"], LH: ["Mini Apathy", "apathy"], ML: ["Almost Boredom", "boredom"], MH: ["Really Boredom", "boredom"], HL: ["Almost Seeker", "seeker"], HH: ["Really Seeker", "seeker"] }
+};
+function lookup(prefPct, arouPct) {
+  const p = band(prefPct),a = band(arouPct);
+  return MATRIX[a][p] || ["—", "relax"];
+}
+
+// --- Header ---
+function Header() {
+  return (
+    <div className="hd">
+      <div className="brand"><span className="mark">🐬</span><span>Senzdy</span></div>
+    </div>);
+
+}
+
+// --- Intro ---
+function Intro({ onStart }) {
+  return (
+    <section className="hero">
+      <div>
+        <h1>Discover your sensory pattern ✨</h1>
+        <p>เลือกช่วงอายุของคุณเพื่อเริ่มต้นแบบประเมินความต้องการรับรู้ประสาทสัมผัส</p>
+        <div className="ages">
+          <button className="age" onClick={() => onStart("kids")}><div className="num">3–12</div><div className="lbl">Children · with Bellbell</div></button>
+          <button className="age" onClick={() => onStart("teen")}><div className="num">13+</div><div className="lbl">Teens & adults</div></button>
+        </div>
+      </div>
+      <div className="hero-art">🐬</div>
+    </section>);
+
+}
+
+// --- Question ---
+function Question({ axis, idx, text, value, onChange }) {
+  return (
+    <div className="q">
+      <div className="q-meta">
+        <span className={axis === "P" ? "pf" : "ar"}>● {axis === "P" ? "Preference" : "Arousal"}</span>
+        <span style={{ marginLeft: 8, color: "var(--ink-2)" }}>· Q{idx}</span>
+      </div>
+      <div className="q-text">{text}</div>
+      <div className="seg">
+        {SCALE.map((s, i) =>
+        <button key={i} className={value === i ? "on" : ""} onClick={() => onChange(i)}>{s}</button>
+        )}
+      </div>
+    </div>);
+
+}
+
+// --- Assessment (one system per page) ---
+function Assessment({ answers, setAnswers, step, setStep, onFinish }) {
+  const sys = DATA[step];
+  const items = [
+  ...sys.P.map((t, i) => ({ axis: "P", idx: i, text: t, key: `${sys.key}.P.${i}` })),
+  ...sys.A.map((t, i) => ({ axis: "A", idx: i, text: t, key: `${sys.key}.A.${i}` }))];
+
+  const allAnswered = items.every((q) => answers[q.key] !== undefined);
+  const total = DATA.length;
+  const pct = Math.round(step / total * 100);
+
+  const next = () => {
+    if (step < total - 1) setStep(step + 1);else
+    onFinish();
+  };
+
+  return (
+    <>
+      <div className="prog">
+        <span>Section {step + 1} of {total}</span>
+        <div className="bar"><i style={{ width: `${(step + 1) / total * 100}%` }} /></div>
+        <span>{Math.round((step + 1) / total * 100)}%</span>
+      </div>
+      <div className="card">
+        <div className="sec-title"><span className="ic">{sys.icon}</span><span>{sys.th} · {sys.label}</span></div>
+        <div className="sec-sub">3 preference + 3 arousal questions</div>
+        {items.map((q) =>
+        <Question key={q.key} axis={q.axis} idx={q.idx + 1} text={q.text}
+        value={answers[q.key]}
+        onChange={(v) => setAnswers({ ...answers, [q.key]: v })} />
+        )}
+        <div className="row">
+          <button className="btn btn-ghost" disabled={step === 0} onClick={() => setStep(Math.max(0, step - 1))}>← Back</button>
+          <button className="btn btn-pri" disabled={!allAnswered} onClick={next}>
+            {step === total - 1 ? "See result" : "Next →"}
+          </button>
+        </div>
+      </div>
+    </>);
+
+}
+
+// --- Result ---
+function Result({ answers, onReset }) {
+  const rows = useMemo(() => DATA.map((sys) => {
+    const pSum = sys.P.reduce((a, _, i) => a + (answers[`${sys.key}.P.${i}`] || 0), 0);
+    const aSum = sys.A.reduce((a, _, i) => a + (answers[`${sys.key}.A.${i}`] || 0), 0);
+    const pPct = Math.round(pSum / (sys.P.length * 4) * 100);
+    const aPct = Math.round(aSum / (sys.A.length * 4) * 100);
+    const [name, kind] = lookup(pPct, aPct);
+    return { sys, pPct, aPct, name, kind };
+  }), [answers]);
+
+  // Hexagon points for radar (6 axes)
+  const R = 110;
+  const axes = rows.map((_, i) => {
+    const ang = -Math.PI / 2 + i * Math.PI * 2 / 6;
+    return { x: Math.cos(ang) * R, y: Math.sin(ang) * R, ang };
+  });
+  const ring = (r) => axes.map((a) => `${(a.x * r / R).toFixed(1)},${(a.y * r / R).toFixed(1)}`).join(" ");
+  const polyForKey = (key) => rows.map((r, i) => {
+    const v = r[key] / 100;
+    return `${(axes[i].x * v).toFixed(1)},${(axes[i].y * v).toFixed(1)}`;
+  }).join(" ");
+
+  return (
+    <div className="card">
+      <div className="sec-title"><span className="ic">📊</span><span>ผลการประเมิน · Result</span></div>
+      <div className="result-grid">
+        <div>
+          <div className="radar">
+            <svg viewBox="-180 -160 360 320" style={{ strokeWidth: "1px" }}>
+              <g fill="none" stroke="#E6EEF6" strokeWidth=".7">
+                {[1, .75, .5, .25].map((r, i) => <polygon key={i} points={ring(R * r)} />)}
+                {axes.map((a, i) => <line key={i} x1="0" y1="0" x2={a.x.toFixed(1)} y2={a.y.toFixed(1)} />)}
+              </g>
+              <polygon points={polyForKey("aPct")} fill="#D32F2F" fillOpacity=".22" stroke="#D32F2F" strokeWidth="2" />
+              <polygon points={polyForKey("pPct")} fill="#2E9E50" fillOpacity=".22" stroke="#2E9E50" strokeWidth="2" />
+              {axes.map((a, i) => {
+                const lx = a.x * 1.18,ly = a.y * 1.18;
+                return <text key={i} x={lx.toFixed(1)} y={ly.toFixed(1)} textAnchor={Math.abs(a.x) < 5 ? "middle" : a.x > 0 ? "start" : "end"} dominantBaseline="middle" fontFamily="Mali, sans-serif" fontSize="11" fill="#5a7691">{rows[i].sys.label}</text>;
+              })}
+            </svg>
+          </div>
+          <div className="legend">
+            <span><i style={{ background: "#2E9E50" }} />Preferences</span>
+            <span><i style={{ background: "#D32F2F" }} />Arousals</span>
+          </div>
+        </div>
+        <div>
+          <table className="rt">
+            <thead><tr><th>System</th><th>Pref</th><th>Arou</th><th>Result</th></tr></thead>
+            <tbody>
+              {rows.map((r) =>
+              <tr key={r.sys.key}>
+                  <td>{r.sys.label}</td>
+                  <td>{r.pPct}%</td>
+                  <td>{r.aPct}%</td>
+                  <td><span className={`chip ${r.kind}`}>{r.name}</span></td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div className="row" style={{ justifyContent: "flex-end" }}>
+        <button className="btn btn-ghost" onClick={onReset}>Start over</button>
+        <button className="btn btn-pri" onClick={() => window.print()}>Save / Print</button>
+      </div>
+    </div>);
+
+}
+
+// --- App ---
+function App() {
+  const [phase, setPhase] = useState("intro"); // intro | quiz | result
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+
+  const reset = () => {setAnswers({});setStep(0);setPhase("intro");};
+
+  return (
+    <div className="wrap">
+      <Header />
+      {phase === "intro" && <Intro onStart={() => setPhase("quiz")} />}
+      {phase === "quiz" && <Assessment
+        answers={answers} setAnswers={setAnswers}
+        step={step} setStep={setStep}
+        onFinish={() => setPhase("result")} />}
+      {phase === "result" && <Result answers={answers} onReset={reset} />}
+    </div>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "axes": {
+      "arousal": "rows (outer key)",
+      "preference": "columns (inner key)"
+    },
+    "bands": {
+      "HH": "84-100",
+      "HL": "67-83",
+      "MH": "51-66",
+      "ML": "35-50",
+      "LH": "18-34",
+      "LL": "0-17"
+    }
+  },
+  "HH": {
+    "LL": "Really Anxiety",
+    "LH": "Mini Avoider",
+    "ML": "Almost Passion",
+    "MH": "Really Passion",
+    "HL": "Almost Flow",
+    "HH": "Really Flow"
+  },
+  "HL": {
+    "LL": "Almost Avoider",
+    "LH": "Avoider",
+    "ML": "Passion",
+    "MH": "Mini Passion",
+    "HL": "Flow",
+    "HH": "Flow"
+  },
+  "MH": {
+    "LL": "Really Worry",
+    "LH": "Worry",
+    "ML": "Relax",
+    "MH": "Really Relax",
+    "HL": "Mini Control",
+    "HH": "Control"
+  },
+  "ML": {
+    "LL": "Worry",
+    "LH": "Mini Relax",
+    "ML": "Really Relax",
+    "MH": "Almost Relax",
+    "HL": "Control",
+    "HH": "Really Control"
+  },
+  "LH": {
+    "LL": "Apathy",
+    "LH": "Apathy",
+    "ML": "Mini Boredom",
+    "MH": "Boredom",
+    "HL": "Mini Seeker",
+    "HH": "Seeker"
+  },
+  "LL": {
+    "LL": "Really Apathy",
+    "LH": "Mini Apathy",
+    "ML": "Almost Boredom",
+    "MH": "Really Boredom",
+    "HL": "Almost Seeker",
+    "HH": "Really Seeker"
+  }
+}

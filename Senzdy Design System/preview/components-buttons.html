@@ -1,0 +1,45 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  :root{
+    --p-blue:#6FBEEC; --p-blue-700:#2E80B8; --p-blue-100:#DDEEFB;
+    --p-pink:#F7A6C0; --p-pink-100:#FDE6EE;
+    --ink:#1f3b56; --ink-2:#5a7691; --line:#E6EEF6;
+  }
+  body{margin:0;padding:24px;background:#fff;color:var(--ink);font-family:"Mali",system-ui,sans-serif;}
+  button{font-family:inherit;font-size:14px;font-weight:700;border-radius:999px;padding:11px 22px;cursor:pointer;border:none;transition:all .2s ease;}
+  .row{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;}
+  .grp{display:flex;flex-direction:column;gap:8px;align-items:flex-start;}
+  .lbl{font-size:10px;font-family:ui-monospace,monospace;color:var(--ink-2);text-transform:uppercase;letter-spacing:.06em;}
+
+  .primary{background:var(--p-blue-700);color:#fff;box-shadow:0 8px 18px rgba(46,128,184,.28);}
+  .primary:hover,.primary.hover{background:var(--p-blue);box-shadow:0 10px 22px rgba(111,190,236,.35);transform:translateY(-1px);}
+  .primary:active,.primary.press{transform:translateY(0);box-shadow:0 4px 10px rgba(46,128,184,.22);}
+
+  .secondary{background:#fff;color:var(--p-blue-700);border:1.5px solid var(--line);}
+  .secondary:hover,.secondary.hover{border-color:var(--p-blue);background:var(--p-blue-100);}
+
+  .pink{background:linear-gradient(135deg,var(--p-blue),var(--p-pink));color:#fff;box-shadow:0 8px 18px rgba(247,166,192,.35);}
+  .pink:hover,.pink.hover{filter:brightness(1.05);transform:translateY(-1px);}
+
+  .danger{background:#D32F2F;color:#fff;box-shadow:0 8px 18px rgba(211,47,47,.25);}
+  .danger:hover,.danger.hover{background:#b71c1c;}
+
+  .ghost{background:transparent;color:var(--p-blue-700);}
+  .ghost:hover,.ghost.hover{background:var(--p-blue-100);}
+
+  .disabled{background:#EEF2F6;color:#A6B5C5;cursor:not-allowed;box-shadow:none;}
+</style></head><body>
+<div class="row">
+  <div class="grp"><span class="lbl">Primary · idle</span><button class="primary">Next →</button></div>
+  <div class="grp"><span class="lbl">Primary · hover</span><button class="primary hover">Next →</button></div>
+  <div class="grp"><span class="lbl">Secondary</span><button class="secondary">Back</button></div>
+  <div class="grp"><span class="lbl">Secondary · hover</span><button class="secondary hover">Back</button></div>
+  <div class="grp"><span class="lbl">Gradient · CTA</span><button class="pink">Start now</button></div>
+  <div class="grp"><span class="lbl">Ghost</span><button class="ghost">Skip</button></div>
+  <div class="grp"><span class="lbl">Danger</span><button class="danger">Reset</button></div>
+  <div class="grp"><span class="lbl">Disabled</span><button class="disabled" disabled>Next</button></div>
+</div>
+</body></html>

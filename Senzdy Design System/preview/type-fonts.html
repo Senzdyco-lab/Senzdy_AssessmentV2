@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Mali:wght@400;600&family=Itim&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:20px; background:#fff; }
+  .grid { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px; }
+  .card { border:1px solid #f0d9e6; border-radius: 14px; padding:14px; background: var(--pastel-pink-100); }
+  .label { font-size:10px; font-family:ui-monospace,monospace; color: var(--pastel-blue-700); margin-bottom:6px; text-transform:uppercase; letter-spacing:.06em; }
+  .sample { font-size:22px; color: var(--pastel-blue-700); line-height:1.3; }
+  .alpha  { font-size:14px; color: var(--pastel-blue-700); opacity:.75; margin-top:6px; }
+  .fredoka { font-family:"Fredoka", sans-serif; font-weight:600; }
+  .mali    { font-family:"Mali", "Itim", sans-serif; font-weight:600; }
+  .itim    { font-family:"Itim", sans-serif; }
+  .note { grid-column: 1 / -1; font-size:11px; color: var(--fg-3); }
+</style></head><body>
+<div class="grid">
+  <div class="card">
+    <div class="label">Fredoka · Latin · 600</div>
+    <div class="sample fredoka">Senzdy — sensory patterns</div>
+    <div class="alpha fredoka">Aa Bb 0123 ✿</div>
+  </div>
+  <div class="card">
+    <div class="label">Mali · Thai+Latin · 600</div>
+    <div class="sample mali">เลือกช่วงอายุของคุณ!</div>
+    <div class="alpha mali">Senzdy · ก ข ค 123</div>
+  </div>
+  <div class="card">
+    <div class="label">Itim · Thai+Latin · 400</div>
+    <div class="sample itim">แบบประเมิน Senzdy</div>
+    <div class="alpha itim">Aa Bb · ก ข ค 0123</div>
+  </div>
+  <div class="note">Cute, rounded options that pair with the Bellbell mark. Mali + Itim cover Thai natively — both via Google Fonts.</div>
+</div>
+</body></html>

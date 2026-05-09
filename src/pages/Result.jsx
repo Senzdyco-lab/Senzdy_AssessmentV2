@@ -1,0 +1,67 @@
+import { useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toPng } from "html-to-image";
+import Button from "../components/Button.jsx";
+import RadarChart from "../components/RadarChart.jsx";
+import ResultTable from "../components/ResultTable.jsx";
+
+export default function Result() {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const result = state?.result;
+  const title = state?.resulttitle ?? "ผลการประเมิน";
+  const captureRef = useRef(null);
+  const [saving, setSaving] = useState(false);
+
+  if (!result) {
+    return (
+      <section className="sz-fade sz-section">
+        <h2 className="sz-section-title">ยังไม่มีผลการประเมิน</h2>
+        <p className="sz-meta sz-disclaimer">
+          กรุณาทำแบบประเมินก่อน เพื่อดูผลลัพธ์
+        </p>
+        <div className="sz-button-row">
+          <Button onClick={() => navigate("/")}>กลับหน้าแรก</Button>
+        </div>
+      </section>
+    );
+  }
+
+  const saveAsPng = async () => {
+    if (!captureRef.current || saving) return;
+    setSaving(true);
+    try {
+      const dataUrl = await toPng(captureRef.current, {
+        pixelRatio: 2,
+        backgroundColor: "#ffffff",
+        cacheBust: true,
+      });
+      const link = document.createElement("a");
+      const stamp = new Date().toISOString().slice(0, 10);
+      link.download = `senzdy-result-${stamp}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      alert("ไม่สามารถบันทึกผลลัพธ์ได้ กรุณาลองอีกครั้ง");
+      console.error("PNG export failed:", err);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <section className="sz-fade sz-section">
+      <div ref={captureRef} className="sz-result-capture">
+        <h2 className="sz-section-title">{title}</h2>
+        <RadarChart series={result.series} labels={result.labels} />
+        <ResultTable rows={result.rows} />
+      </div>
+      <div className="sz-button-row">
+        <Button variant="outline" onClick={() => navigate(-1)}>Edit</Button>
+        <Button onClick={saveAsPng}>
+          {saving ? "Saving…" : "Save as PNG"}
+        </Button>
+      </div>
+    </section>
+  );
+}

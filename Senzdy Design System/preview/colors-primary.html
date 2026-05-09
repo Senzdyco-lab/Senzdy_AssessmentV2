@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family:var(--font-sans); }
+  .row { display:grid; grid-template-columns: repeat(7, 1fr); gap:10px; }
+  .swatch { aspect-ratio: 1.4 / 1; border-radius:8px; padding:10px; display:flex; flex-direction:column; justify-content:space-between;
+            border: 1px solid var(--border-soft); box-shadow: var(--shadow-card); }
+  .swatch .name { font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+  .swatch .hex { font-size:11px; font-family: ui-monospace, monospace; opacity:.85; }
+  .light { color: #fff; }
+  .dark  { color: #1a3a55; }
+</style></head><body>
+<div class="row">
+  <div class="swatch light" style="background:var(--pastel-blue-700)"><span class="name">Blue 700</span><span class="hex">#2E80B8</span></div>
+  <div class="swatch light" style="background:var(--pastel-blue-500)"><span class="name">Blue 500</span><span class="hex">#6FBEEC</span></div>
+  <div class="swatch dark"  style="background:var(--pastel-blue-300)"><span class="name">Blue 300</span><span class="hex">#A8D7F4</span></div>
+  <div class="swatch dark"  style="background:var(--pastel-blue-100)"><span class="name">Blue 100</span><span class="hex">#DDEEFB</span></div>
+  <div class="swatch light" style="background:var(--pastel-pink-500)"><span class="name">Pink 500</span><span class="hex">#F7A6C0</span></div>
+  <div class="swatch dark"  style="background:var(--pastel-pink-300)"><span class="name">Pink 300</span><span class="hex">#FBC9D8</span></div>
+  <div class="swatch dark"  style="background:var(--pastel-pink-100)"><span class="name">Pink 100</span><span class="hex">#FDE6EE</span></div>
+</div>
+</body></html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Senzdy — UI kit (cute pastel)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  :root{
+    --font-cute: "Mali","Fredoka",system-ui,sans-serif;
+    --p-blue:#6FBEEC; --p-blue-700:#2E80B8; --p-blue-100:#DDEEFB;
+    --p-pink:#F7A6C0; --p-pink-100:#FDE6EE;
+    --ink:#1f3b56; --ink-2:#5a7691; --line:#E6EEF6;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#fff;color:var(--ink);font-family:var(--font-cute);}
+  body{
+    background:
+      radial-gradient(900px 500px at 110% -10%, var(--p-pink-100), transparent 60%),
+      radial-gradient(800px 500px at -10% 110%, var(--p-blue-100), transparent 60%),
+      #fff;
+    min-height:100vh;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:24px 20px 80px;}
+  /* Header */
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:8px 4px 24px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:24px;color:var(--p-blue-700);}
+  .brand img{width:36px;height:36px;border-radius:50%;background:var(--p-blue-100);object-fit:contain;padding:3px;}
+  .hd nav{display:flex;gap:8px}
+  .pill{font:inherit;font-size:14px;font-weight:600;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--p-blue-700);cursor:pointer;}
+  .pill.active{background:var(--p-blue-700);color:#fff;border-color:var(--p-blue-700);}
+
+  /* Hero / intro */
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:24px 0;}
+  .hero h1{font-family:var(--font-cute);font-size:36px;line-height:1.2;font-weight:700;color:var(--p-blue-700);margin:0 0 12px;}
+  .hero p{font-size:18px;color:var(--ink-2);margin:0 0 20px;line-height:1.5;}
+  .ages{display:flex;gap:12px;flex-wrap:wrap;}
+  .age{flex:1;min-width:140px;padding:18px 16px;border-radius:18px;background:#fff;border:2px solid var(--line);cursor:pointer;text-align:left;transition:.2s;}
+  .age:hover{border-color:var(--p-blue);transform:translateY(-2px);box-shadow:0 12px 28px rgba(46,128,184,.12);}
+  .age .num{font-size:28px;font-weight:700;color:var(--p-blue-700);}
+  .age .lbl{font-size:13px;color:var(--ink-2);}
+  .hero-art{aspect-ratio:1;background:radial-gradient(circle at 50% 60%, var(--p-pink-100), var(--p-blue-100));border-radius:32px;display:flex;align-items:center;justify-content:center;}
+  .hero-art img{max-width:78%;}
+
+  /* Progress */
+  .prog{display:flex;align-items:center;gap:10px;margin:8px 0 18px;font-size:13px;color:var(--ink-2);}
+  .bar{flex:1;height:8px;background:var(--line);border-radius:999px;overflow:hidden;}
+  .bar>i{display:block;height:100%;width:35%;background:linear-gradient(90deg,var(--p-blue),var(--p-pink));border-radius:inherit;}
+
+  /* Card */
+  .card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 8px 24px rgba(46,128,184,.06);padding:20px;margin-bottom:14px;}
+  .sec-title{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--p-blue-700);font-size:18px;margin:0 0 12px;}
+  .sec-title .ic{width:32px;height:32px;border-radius:10px;background:var(--p-blue-100);display:grid;place-items:center;color:var(--p-blue-700);font-size:18px;}
+
+  .q{padding:14px 4px;border-bottom:1px dashed var(--line);}
+  .q:last-child{border-bottom:none}
+  .q-text{font-size:16px;font-weight:500;margin-bottom:10px;color:var(--ink);}
+  .lik{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+  .lik button{font:inherit;font-size:13px;font-weight:600;padding:10px 4px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink-2);cursor:pointer;transition:.15s;}
+  .lik button:hover{border-color:var(--p-blue);}
+  .lik button.on{background:linear-gradient(135deg,var(--p-blue) 0%, var(--p-pink) 130%);color:#fff;border-color:transparent;box-shadow:0 6px 14px rgba(247,166,192,.4);}
+  @media(max-width:560px){.hero{grid-template-columns:1fr}.lik{grid-template-columns:repeat(5,1fr)}.lik button{font-size:11px;padding:10px 2px}}
+
+  /* Buttons */
+  .row{display:flex;gap:12px;justify-content:flex-end;margin-top:16px;}
+  .btn{font:inherit;font-size:15px;font-weight:700;padding:12px 22px;border-radius:999px;border:none;cursor:pointer;transition:.2s;}
+  .btn-pri{background:var(--p-blue-700);color:#fff;box-shadow:0 8px 20px rgba(46,128,184,.3);}
+  .btn-pri:hover{background:var(--p-blue);transform:translateY(-1px);}
+  .btn-ghost{background:#fff;color:var(--p-blue-700);border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--p-pink);color:#d05a82;}
+
+  /* Result */
+  .result-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;}
+  @media(max-width:720px){.result-grid{grid-template-columns:1fr}}
+  .stat{padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,#fff,var(--p-blue-100));border:1px solid var(--line);}
+  .stat .t{font-size:12px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.06em;}
+  .stat .v{font-size:24px;font-weight:700;color:var(--p-blue-700);}
+  table.rt{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:14px;}
+  table.rt th{font-size:11px;text-transform:uppercase;color:var(--ink-2);text-align:left;padding:6px 10px;}
+  table.rt td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px;}
+  table.rt td:first-child{border-left:1px solid var(--line);border-radius:12px 0 0 12px;font-weight:600;}
+  table.rt td:last-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0;}
+  .chip{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600;}
+  .chip.flow{background:#E2D6F4;color:#5b3a99}
+  .chip.passion{background:#FFE3CC;color:#a35a14}
+  .chip.relax{background:#DBEFE1;color:#2f7a4a}
+  .chip.worry{background:#FFE0CD;color:#a14a14}
+
+  /* Radar */
+  .radar{aspect-ratio:1;display:grid;place-items:center;}
+  .radar svg{width:100%;height:auto;max-width:340px}
+
+  .legend{display:flex;gap:14px;justify-content:center;margin-top:8px;font-size:13px;}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hd">
+    <div class="brand"><img src="../../assets/bellbell-logo.jpg" alt=""><span>Senzdy</span></div>
+    <nav><button class="pill active">Assessment</button><button class="pill">About</button></nav>
+  </div>
+
+  <!-- INTRO -->
+  <section class="hero">
+    <div>
+      <h1>Discover your sensory pattern ✨</h1>
+      <p>เลือกช่วงอายุของคุณเพื่อเริ่มต้นแบบประเมินความต้องการรับรู้ประสาทสัมผัส</p>
+      <div class="ages">
+        <button class="age"><div class="num">3–12</div><div class="lbl">Children · with Bellbell</div></button>
+        <button class="age"><div class="num">13+</div><div class="lbl">Teens & adults</div></button>
+      </div>
+    </div>
+    <div class="hero-art"><img src="../../assets/bellbell-logo.jpg" alt=""></div>
+  </section>
+
+  <!-- ASSESSMENT -->
+  <div class="prog"><span>Section 1 of 6</span><div class="bar"><i></i></div><span>35%</span></div>
+
+  <div class="card">
+    <div class="sec-title"><span class="ic">👁</span><span>ด้านการมองเห็น (Sight System)</span></div>
+
+    <div class="q">
+      <div class="q-text">ชอบเวลามีผู้คนอยู่รายรอบ</div>
+      <div class="lik">
+        <button>ไม่เคย</button><button>น้อยครั้ง</button>
+        <button class="on">บางครั้ง</button><button>บ่อยครั้ง</button><button>ทุกครั้ง</button>
+      </div>
+    </div>
+    <div class="q">
+      <div class="q-text">ชอบมองคนที่แต่งกายโทนสีสดใส</div>
+      <div class="lik">
+        <button>ไม่เคย</button><button>น้อยครั้ง</button>
+        <button>บางครั้ง</button><button class="on">บ่อยครั้ง</button><button>ทุกครั้ง</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <button class="btn btn-ghost">Back</button>
+      <button class="btn btn-pri">Continue →</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="card">
+    <div class="sec-title"><span class="ic">📊</span><span>ผลการประเมิน · Result</span></div>
+    <div class="result-grid">
+      <div>
+        <div class="radar">
+          <svg viewBox="-160 -150 320 300">
+            <g fill="none" stroke="#E6EEF6" stroke-width=".7">
+              <polygon points="120,0 60,-104 -60,-104 -120,0 -60,104 60,104"/>
+              <polygon points="90,0 45,-78 -45,-78 -90,0 -45,78 45,78"/>
+              <polygon points="60,0 30,-52 -30,-52 -60,0 -30,52 30,52"/>
+              <polygon points="30,0 15,-26 -15,-26 -30,0 -15,26 15,26"/>
+              <line x1="0" y1="0" x2="120" y2="0"/><line x1="0" y1="0" x2="60" y2="-104"/>
+              <line x1="0" y1="0" x2="-60" y2="-104"/><line x1="0" y1="0" x2="-120" y2="0"/>
+              <line x1="0" y1="0" x2="-60" y2="104"/><line x1="0" y1="0" x2="60" y2="104"/>
+            </g>
+            <polygon points="78,0 47,-81 -32,-56 -30,0 -42,73 90,52" fill="#D32F2F" fill-opacity=".22" stroke="#D32F2F" stroke-width="2"/>
+            <polygon points="42,0 25,-44 -18,-31 -72,0 -30,52 66,38" fill="#2E9E50" fill-opacity=".22" stroke="#2E9E50" stroke-width="2"/>
+            <g font-family="Mali, sans-serif" font-size="11" fill="#5a7691">
+              <text x="128" y="3">Sight</text><text x="65" y="-110" text-anchor="middle">Auditory</text>
+              <text x="-65" y="-110" text-anchor="middle">Olfactory</text><text x="-128" y="3" text-anchor="end">Touch</text>
+              <text x="-65" y="115" text-anchor="middle">Vestibular</text><text x="65" y="115" text-anchor="middle">Proprio</text>
+            </g>
+          </svg>
+        </div>
+        <div class="legend"><span><i style="background:#2E9E50"></i>Preferences</span><span><i style="background:#D32F2F"></i>Arousals</span></div>
+      </div>
+      <div>
+        <table class="rt">
+          <thead><tr><th>System</th><th>Pref</th><th>Arou</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>Sight</td><td>35%</td><td>65%</td><td><span class="chip passion">Passion</span></td></tr>
+            <tr><td>Auditory</td><td>35%</td><td>65%</td><td><span class="chip passion">Passion</span></td></tr>
+            <tr><td>Olfactory</td><td>25%</td><td>45%</td><td><span class="chip relax">Relax</span></td></tr>
+            <tr><td>Touch</td><td>60%</td><td>25%</td><td><span class="chip relax">Relax</span></td></tr>
+            <tr><td>Vestibular</td><td>25%</td><td>35%</td><td><span class="chip worry">Worry</span></td></tr>
+            <tr><td>Proprio</td><td>55%</td><td>75%</td><td><span class="chip flow">Flow</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row"><button class="btn btn-ghost">Edit</button><button class="btn btn-pri">Save result</button></div>
+  </div>
+</div>
+</body></html>

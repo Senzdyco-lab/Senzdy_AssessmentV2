@@ -1,0 +1,50 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  :root{
+    --p-blue:#6FBEEC; --p-blue-700:#2E80B8; --p-blue-100:#DDEEFB;
+    --p-pink:#F7A6C0; --ink:#1f3b56; --ink-2:#5a7691; --line:#E6EEF6; --track:#F4F8FC;
+  }
+  body{margin:0;padding:18px;background:#fff;color:var(--ink);font-family:"Mali",system-ui,sans-serif;}
+  .grid{display:grid;gap:18px;}
+  .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);font-weight:600;margin-bottom:8px;}
+  .q{font-size:14px;font-weight:500;margin-bottom:10px;color:var(--ink);}
+
+  /* Segmented capsule (locked-in pattern) */
+  .seg{display:flex;background:var(--track);border-radius:999px;padding:4px;gap:2px;}
+  .seg button{flex:1;font:inherit;font-size:12px;font-weight:600;padding:9px 6px;border:none;background:transparent;color:var(--ink-2);border-radius:999px;cursor:pointer;transition:.15s;}
+  .seg button:hover:not(.on){color:var(--p-blue-700);}
+  .seg button.on{background:var(--p-blue-700);color:#fff;box-shadow:0 4px 10px rgba(46,128,184,.25);}
+
+  /* Disabled / hover state demo */
+  .seg.dim button{opacity:.55;}
+</style></head><body>
+<div class="grid">
+  <div>
+    <div class="q">ชอบเวลามีผู้คนอยู่รายรอบ</div>
+    <div class="seg"><button>ไม่เคย</button><button>น้อย</button><button class="on">บางครั้ง</button><button>บ่อย</button><button>ทุกครั้ง</button></div>
+  </div>
+
+  <div>
+    <div class="lbl">Default · unselected</div>
+    <div class="seg"><button>ไม่เคย</button><button>น้อย</button><button>บางครั้ง</button><button>บ่อย</button><button>ทุกครั้ง</button></div>
+  </div>
+
+  <div>
+    <div class="lbl">Selected — first option</div>
+    <div class="seg"><button class="on">ไม่เคย</button><button>น้อย</button><button>บางครั้ง</button><button>บ่อย</button><button>ทุกครั้ง</button></div>
+  </div>
+
+  <div>
+    <div class="lbl">Selected — last option</div>
+    <div class="seg"><button>ไม่เคย</button><button>น้อย</button><button>บางครั้ง</button><button>บ่อย</button><button class="on">ทุกครั้ง</button></div>
+  </div>
+
+  <div>
+    <div class="lbl">English variant · 5-point agreement</div>
+    <div class="seg"><button>Never</button><button>Rarely</button><button class="on">Sometimes</button><button>Often</button><button>Always</button></div>
+  </div>
+</div>
+</body></html>

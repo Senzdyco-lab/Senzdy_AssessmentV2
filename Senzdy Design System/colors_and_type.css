@@ -1,0 +1,184 @@
+/* ============================================================
+   Senzdy Design System — Foundations
+   Colors + Typography for the Personal Sensory assessment site
+   ============================================================ */
+
+/* ---------- Fonts ---------- */
+@font-face {
+  font-family: "Motiva Sans";
+  font-weight: 300;
+  font-style: normal;
+  src: url("./fonts/Motiva-Sans-Light.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Motiva Sans";
+  font-weight: 700;
+  font-style: normal;
+  src: url("./fonts/Motiva-Sans-Bold.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  /* ============ Brand Color Tokens ============ */
+
+  /* Primary — Senzdy purples (the assessment chrome) */
+  --senzdy-purple-900: #17007e;   /* deepest — result titles */
+  --senzdy-purple-800: #18216d;   /* primary text on light */
+  --senzdy-purple-700: #2e186a;   /* primary buttons, card headers */
+  --senzdy-purple-600: #4c13a8;   /* radio button borders, selected state */
+  --senzdy-purple-500: #3c0058;   /* page section headers (uppercase) */
+  --senzdy-purple-200: #f5f3ff;   /* radio idle background */
+
+  /* Secondary — Bellbell mark (child-facing illustration) */
+  --bellbell-blue:    #6FBEEC;    /* dolphin outline */
+  --bellbell-pink:    #F7A6C0;    /* heart, splash */
+  --bellbell-wash:    #C9D5E8;    /* underline brushstroke */
+
+  /* Pastel primary ramp — derived from the Bellbell logo */
+  --pastel-blue-700:  #2E80B8;   /* deepest blue (text on light) */
+  --pastel-blue-500:  #6FBEEC;   /* logo blue */
+  --pastel-blue-300:  #A8D7F4;   /* tints */
+  --pastel-blue-100:  #DDEEFB;   /* card wash */
+  --pastel-pink-500:  #F7A6C0;   /* logo pink */
+  --pastel-pink-300:  #FBC9D8;   /* soft tint */
+  --pastel-pink-100:  #FDE6EE;   /* card wash */
+
+  /* Accents */
+  --accent-coral:     rgb(255, 130, 92);  /* hover / active accent */
+  --accent-coral-rgb: 255, 130, 92;
+  --accent-danger:    #ff0037;            /* Reset button */
+
+  /* Result series (radar + table) */
+  --series-preferences: #1daf00;          /* green */
+  --series-arousals:    #b61a1a;          /* dark red */
+
+  /* Criterion bands (from new_Criteria.jpg) */
+  --band-anxiety:    #f4a3a3;   /* HH-LL high arousal/low pref */
+  --band-passion:    #ffd699;   /* HH-MH */
+  --band-flow:       #c8b6e2;   /* HH-HH */
+  --band-worry:      #ffb78c;   /* MH-LH */
+  --band-relax:      #d9d9d9;   /* MH-MH */
+  --band-control:    #b8e1c9;   /* MH-HH */
+  --band-apathy:     #d6d6d6;   /* LH-LL */
+  --band-boredom:    #e6c7b8;   /* LH-MH */
+  --band-seeker:     #c6b8d9;   /* LH-HH */
+
+  /* Neutrals */
+  --bg:           #ffffff;
+  --bg-soft:      #fafafa;
+  --bg-input:     rgb(241, 242, 243);
+  --border:       #edf3f5;
+  --border-soft:  #CDD1D4;
+  --fg-1:         #18216d;   /* default body text */
+  --fg-2:         #404041;   /* labels */
+  --fg-3:         #888888;   /* hints */
+  --fg-on-purple: #ffffff;
+
+  /* ============ Typography Tokens ============ */
+  --font-sans: "Motiva Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+               "Helvetica Neue", Arial, sans-serif;
+  --font-thai: "Motiva Sans", "IBM Plex Sans Thai", "Sarabun", "Noto Sans Thai",
+               sans-serif;
+
+  --fs-display: clamp(32px, 5vw, 56px); /* hero h1 */
+  --fs-h1:      clamp(24px, 4vw, 40px); /* page title */
+  --fs-h2:      clamp(24px, 4vw, 30px); /* section title */
+  --fs-h3:      24px;
+  --fs-h6:      clamp(14px, 4vw, 18px);
+  --fs-body:    21px;                   /* default p (large-set) */
+  --fs-body-sm: 16px;                   /* form labels, cards */
+  --fs-meta:    13px;
+
+  --lh-tight:  1.18;
+  --lh-snug:   1.2;
+  --lh-normal: 1.41;
+  --lh-relaxed: 1.6;
+
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* ============ Spacing / Radius / Shadow ============ */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --shadow-button: 0 16px 30px rgba(23, 31, 114, 0.20);
+  --shadow-card:   0 2px 8px rgba(23, 31, 114, 0.06);
+  --shadow-pop:    0 12px 32px rgba(23, 31, 114, 0.16);
+
+  --container-max: 1200px;
+  --container-pad: 60px;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 200ms;
+  --t-base: 300ms;
+}
+
+/* ============ Semantic element styles ============ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  color: var(--senzdy-purple-800);
+  line-height: var(--lh-tight);
+  margin: 0;
+}
+h1 { font-size: var(--fs-display); font-weight: 600; }
+h2 { font-size: var(--fs-h1); color: var(--senzdy-purple-500); text-transform: uppercase; }
+h3 { font-size: var(--fs-h2); color: var(--senzdy-purple-900); text-transform: uppercase; }
+h6 { font-size: var(--fs-h6); text-transform: uppercase; color: #000; font-weight: var(--fw-light); }
+
+p {
+  color: var(--senzdy-purple-800);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  margin: 0;
+}
+
+a {
+  color: var(--senzdy-purple-700);
+  text-decoration: none;
+  transition: color var(--t-fast) var(--ease);
+}
+a:hover {
+  color: var(--accent-coral);
+  text-decoration: var(--accent-coral) wavy underline;
+  text-underline-position: under;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Container */
+.sz-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+@media (max-width: 1024px) { .sz-container { padding: 0 30px; } }
+@media (max-width: 768px)  { .sz-container { padding: 0 18px; } }
