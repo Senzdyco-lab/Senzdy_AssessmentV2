@@ -6,7 +6,7 @@ import Result from "./pages/Result.jsx";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div className="sz-app">
         <Header />
         <main className="sz-container sz-main">
