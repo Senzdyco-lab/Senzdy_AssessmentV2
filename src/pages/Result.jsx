@@ -4,14 +4,19 @@ import { toPng } from "html-to-image";
 import Button from "../components/Button.jsx";
 import RadarChart from "../components/RadarChart.jsx";
 import ResultTable from "../components/ResultTable.jsx";
+import { saveResult } from "../lib/supabase.js";
 
 export default function Result() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const result = state?.result;
+  const answers = state?.answers;
+  const ageGroup = state?.ageGroup;
   const title = state?.resulttitle ?? "ผลการประเมิน";
   const captureRef = useRef(null);
   const [saving, setSaving] = useState(false);
+  const [contact, setContact] = useState("");
+  const [submitState, setSubmitState] = useState("idle"); // idle | submitting | submitted
 
   if (!result) {
     return (
@@ -49,6 +54,32 @@ export default function Result() {
     }
   };
 
+  const submit = async () => {
+    if (submitState === "submitting" || !answers || !ageGroup) return;
+    setSubmitState("submitting");
+    try {
+      await saveResult({
+        ageGroup,
+        answers,
+        scores: result.rows,
+        contact,
+      });
+      setSubmitState("submitted");
+    } catch (err) {
+      console.error("Submit failed:", err);
+      alert("ส่งผลลัพธ์ไม่สำเร็จ กรุณาลองอีกครั้ง");
+      setSubmitState("idle");
+    }
+  };
+
+  const submitDisabled = submitState !== "idle" || !answers;
+  const submitLabel =
+    submitState === "submitting"
+      ? "กำลังส่ง…"
+      : submitState === "submitted"
+      ? "✓ ส่งแล้ว"
+      : "Submit response";
+
   return (
     <section className="sz-fade sz-section">
       <div ref={captureRef} className="sz-result-capture">
@@ -56,6 +87,30 @@ export default function Result() {
         <RadarChart series={result.series} labels={result.labels} />
         <ResultTable rows={result.rows} />
       </div>
+
+      <div className="sz-submit-row">
+        <input
+          type="text"
+          className="sz-input"
+          placeholder="อีเมลหรือเบอร์โทร (ไม่บังคับ)"
+          value={contact}
+          onChange={(e) => setContact(e.target.value)}
+          disabled={submitState !== "idle"}
+        />
+        <Button onClick={submit} variant={submitDisabled ? "outline" : "primary"}>
+          {submitLabel}
+        </Button>
+      </div>
+      {submitState === "submitted" && (
+        <button
+          type="button"
+          className="sz-resubmit"
+          onClick={() => setSubmitState("idle")}
+        >
+          ส่งอีกครั้ง
+        </button>
+      )}
+
       <div className="sz-button-row">
         <Button variant="outline" onClick={() => navigate(-1)}>Edit</Button>
         <Button onClick={saveAsPng}>

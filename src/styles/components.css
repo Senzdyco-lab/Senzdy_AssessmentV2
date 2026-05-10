@@ -418,6 +418,59 @@
   border-radius: 50%;
 }
 
+/* ============ Submit row (Result page) ============ */
+.sz-submit-row {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-top: var(--sp-3);
+}
+.sz-submit-row .sz-input {
+  flex: 1;
+  min-width: 220px;
+}
+.sz-submit-row .sz-btn {
+  min-width: 160px;
+}
+.sz-input {
+  font-family: var(--font-cute);
+  font-size: var(--fs-body-sm);
+  padding: 12px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: #fff;
+  color: var(--ink);
+  transition: border-color var(--t-fast) var(--ease);
+}
+.sz-input::placeholder {
+  color: var(--ink-3);
+}
+.sz-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.sz-input:disabled {
+  background: #f7f9fb;
+  color: var(--ink-2);
+  cursor: not-allowed;
+}
+.sz-resubmit {
+  align-self: flex-end;
+  margin-right: var(--sp-2);
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: var(--fs-meta);
+  color: var(--primary);
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+.sz-resubmit:hover {
+  color: var(--accent-pink);
+}
+
 /* ============ Result capture (used for PNG export) ============ */
 .sz-result-capture {
   display: flex;
@@ -490,6 +543,251 @@
   font-weight: var(--fw-bold);
   color: var(--primary);
   letter-spacing: 0.02em;
+}
+
+/* ============ Admin (login + dashboard) ============ */
+.sz-admin-login {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  max-width: 360px;
+  margin: var(--sp-7) auto 0;
+  padding: var(--sp-5);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+.sz-admin-login .sz-section-title {
+  text-align: left;
+  margin-bottom: var(--sp-2);
+}
+.sz-admin-error {
+  color: var(--accent-danger);
+  font-size: var(--fs-meta);
+  margin: 0;
+}
+
+.sz-admin {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.sz-admin-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+.sz-admin-head .sz-page-title {
+  text-align: left;
+}
+.sz-admin-toolbar {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.sz-admin-toolbar .sz-input {
+  flex: 1;
+  min-width: 220px;
+}
+.sz-select {
+  font-family: var(--font-cute);
+  font-size: var(--fs-body-sm);
+  padding: 12px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+.sz-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.sz-admin-tablewrap {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  overflow: auto;
+}
+.sz-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-cute);
+  font-size: var(--fs-body-sm);
+}
+.sz-admin-table th {
+  text-align: left;
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: 11px;
+  border-bottom: 1px solid var(--line);
+  background: var(--track);
+}
+.sz-admin-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.sz-admin-table th.sortable:hover {
+  color: var(--primary);
+}
+.sz-admin-table th .caret {
+  margin-left: var(--sp-1);
+  font-size: 10px;
+  color: var(--ink-3);
+}
+.sz-admin-table th.sortable:hover .caret {
+  color: var(--primary);
+}
+.sz-admin-table td {
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  vertical-align: top;
+}
+.sz-admin-table tr:last-child td {
+  border-bottom: none;
+}
+.sz-admin-table td.muted,
+.sz-admin-table .muted {
+  color: var(--ink-2);
+}
+.sz-admin-table td.actions {
+  white-space: nowrap;
+  text-align: right;
+}
+.sz-admin-empty {
+  text-align: center;
+  color: var(--ink-2);
+  padding: var(--sp-6) var(--sp-4);
+}
+.sz-link {
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: var(--fs-body-sm);
+  color: var(--primary);
+  cursor: pointer;
+  padding: 0 var(--sp-2);
+  text-decoration: underline;
+}
+.sz-link:hover {
+  color: var(--accent-pink);
+}
+.sz-link:disabled {
+  color: var(--ink-3);
+  cursor: not-allowed;
+  text-decoration: none;
+}
+.sz-link-danger {
+  color: var(--accent-danger);
+}
+.sz-link-danger:hover {
+  color: var(--accent-pink);
+}
+
+/* ============ Modal (admin detail) ============ */
+.sz-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 59, 86, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+  z-index: 50;
+}
+.sz-modal {
+  background: #fff;
+  border-radius: var(--radius-xl);
+  width: min(720px, 100%);
+  max-height: min(90vh, calc(100vh - 32px));
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-pop);
+  overflow: hidden;
+  min-height: 0;
+}
+.sz-modal-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--line);
+}
+.sz-modal-title {
+  font-family: var(--font-cute);
+  font-weight: var(--fw-bold);
+  color: var(--primary);
+  font-size: var(--fs-h3);
+}
+.sz-modal-meta {
+  font-size: var(--fs-meta);
+  color: var(--ink-2);
+  margin-top: 2px;
+}
+.sz-modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--ink-2);
+  cursor: pointer;
+  padding: 0 var(--sp-2);
+}
+.sz-modal-close:hover {
+  color: var(--accent-pink);
+}
+.sz-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--sp-4) var(--sp-5);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.sz-modal-body .sz-radar {
+  max-width: 340px;
+}
+.sz-modal-raw {
+  margin-top: var(--sp-3);
+}
+.sz-modal-raw summary {
+  cursor: pointer;
+  font-weight: var(--fw-semibold);
+  color: var(--primary);
+}
+.sz-modal-raw-grid {
+  margin-top: var(--sp-3);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--sp-2);
+}
+.sz-modal-raw-cell {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: var(--track);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-meta);
+}
+.sz-modal-raw-cell .qid {
+  color: var(--ink-2);
+}
+.sz-modal-raw-cell .val {
+  font-weight: var(--fw-bold);
+  color: var(--primary);
 }
 
 /* ============ Mobile tightening ============ */

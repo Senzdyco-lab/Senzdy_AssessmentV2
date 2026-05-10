@@ -29,7 +29,14 @@ export default function Assessment({ ageGroup }) {
       return;
     }
     const result = computeResult(survey, answers);
-    navigate("/result", { state: { result, resulttitle: survey.resulttitle } });
+    navigate("/result", {
+      state: {
+        result,
+        resulttitle: survey.resulttitle,
+        answers,
+        ageGroup,
+      },
+    });
   };
 
   return (
