@@ -1,6 +1,13 @@
 import LikertGroup from "./LikertGroup.jsx";
 
-export default function QuestionCard({ id, text, value, onChange, scaleReversed, choiceSet }) {
+export default function QuestionCard({
+  id,
+  text,
+  value,
+  onChange,
+  scaleReversed,
+  choiceSet,
+}) {
   return (
     <div className="sz-card sz-question" id={id}>
       <div className="sz-question-text">{text}</div>

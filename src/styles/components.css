@@ -26,7 +26,86 @@
   gap: var(--sp-4);
 }
 
-/* Intro page — centered hero layout */
+/* Intro / Hero page — matches Assessment Prototype design */
+.sz-hero {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: var(--sp-6) 0 var(--sp-4);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.sz-hero-title {
+  font-family: var(--font-cute);
+  font-size: 40px;
+  line-height: 1.2;
+  font-weight: var(--fw-bold);
+  color: var(--primary);
+  margin: 0;
+}
+.sz-hero-sub {
+  font-family: var(--font-cute);
+  font-size: 18px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin: 0 0 var(--sp-3);
+}
+.sz-age-picker {
+  display: flex;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.sz-age {
+  flex: 1;
+  min-width: 200px;
+  padding: 26px 20px;
+  border-radius: 20px;
+  background: #fff;
+  border: 2px solid var(--line);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--t-base) var(--ease);
+  font-family: var(--font-cute);
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.sz-age:hover {
+  border-color: var(--pastel-blue-500);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(46, 128, 184, 0.12);
+}
+.sz-age:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--pastel-blue-300);
+}
+.sz-age-num {
+  font-size: 40px;
+  font-weight: var(--fw-bold);
+  color: var(--primary);
+  line-height: 1.1;
+}
+.sz-age-lbl {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+@media (max-width: 480px) {
+  .sz-hero-title {
+    font-size: 32px;
+  }
+  .sz-hero-sub {
+    font-size: 16px;
+  }
+  .sz-age-num {
+    font-size: 34px;
+  }
+}
+
+/* Legacy intro layout (kept for compatibility with older imports) */
 .sz-intro-section {
   text-align: center;
   align-items: center;
@@ -278,68 +357,93 @@
 .sz-subsection {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-2);
+  gap: var(--sp-3);
 }
 .sz-subsection-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 4px 0;
+}
+.sz-question-section {
   font-family: var(--font-cute);
-  font-weight: var(--fw-semibold);
-  font-size: var(--fs-meta);
+  font-size: 11px;
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--ink-2);
-  border-bottom: 1px dashed var(--line);
-  padding-bottom: var(--sp-2);
-  margin: 0;
+}
+.sz-system-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+  line-height: 1;
 }
 
+/* Question card — clean: no header, just question text + Likert */
 .sz-question {
-  padding: var(--sp-4);
+  padding: 18px 20px;
 }
 .sz-question-text {
   font-family: var(--font-cute);
-  font-size: var(--fs-body);
-  font-weight: var(--fw-medium);
-  line-height: var(--lh-normal);
+  font-size: 17px;
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
   color: var(--ink);
-  margin-bottom: var(--sp-3);
+  margin-bottom: 14px;
 }
 
-/* ============ Likert (5-point Thai scale, pastel pills) ============ */
+/* ============ Likert — distinct clickable pill buttons ============ */
 .sz-likert {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
   gap: var(--sp-2);
+  width: 100%;
 }
 .sz-likert-opt {
+  flex: 1;
   font-family: var(--font-cute);
   font-size: 13px;
   font-weight: var(--fw-semibold);
-  padding: 10px 4px;
-  border: 1.5px solid var(--line);
+  padding: 12px 6px;
   background: #fff;
   color: var(--ink-2);
-  border-radius: var(--radius-md);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
   cursor: pointer;
-  transition: all var(--t-fast) var(--ease);
+  transition: all var(--t-base) var(--ease);
+  box-shadow: 0 1px 0 rgba(31, 59, 86, 0.04);
 }
-.sz-likert-opt:hover {
-  border-color: var(--pastel-blue-500);
+.sz-likert-opt:hover:not(.is-checked) {
   color: var(--primary);
+  border-color: var(--pastel-blue-500);
+  background: var(--pastel-blue-100);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(46, 128, 184, 0.12);
 }
 .sz-likert-opt.is-checked {
-  background: linear-gradient(135deg, var(--pastel-blue-500) 0%, var(--pastel-pink-500) 130%);
-  border-color: transparent;
+  background: var(--primary);
   color: var(--fg-on-primary);
-  box-shadow: 0 6px 14px rgba(247, 166, 192, 0.4);
+  border-color: var(--primary);
+  box-shadow: 0 6px 14px rgba(46, 128, 184, 0.32);
 }
 .sz-likert-opt:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px var(--pastel-blue-300);
 }
 @media (max-width: 560px) {
+  .sz-likert {
+    flex-direction: column;
+    gap: 6px;
+  }
   .sz-likert-opt {
-    font-size: 11px;
-    padding: 10px 2px;
+    padding: 13px 12px;
+    text-align: left;
+    border-radius: 12px;
   }
 }
 
@@ -544,6 +648,29 @@
   color: var(--primary);
   letter-spacing: 0.02em;
 }
+
+/* Result chips — one tinted pill per criterion category */
+.sz-chip {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-cute);
+  font-size: 12px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.sz-chip-flow    { background: #E2D6F4; color: #5b3a99; }
+.sz-chip-passion { background: #FFE3CC; color: #a35a14; }
+.sz-chip-relax   { background: #DBEFE1; color: #2f7a4a; }
+.sz-chip-control { background: #D6EAF6; color: #2E80B8; }
+.sz-chip-worry   { background: #FFE0CD; color: #a14a14; }
+.sz-chip-anxiety { background: #FBD3D3; color: #8c2020; }
+.sz-chip-avoider { background: #F0E0F8; color: #732e95; }
+.sz-chip-boredom { background: #E3E6EA; color: #54647a; }
+.sz-chip-apathy  { background: #DCE0E5; color: #475569; }
+.sz-chip-seeker  { background: #FFE6F0; color: #b13a73; }
+.sz-chip-default { background: var(--track); color: var(--ink-2); }
 
 /* ============ Admin (login + dashboard) ============ */
 .sz-admin-login {
@@ -816,6 +943,9 @@
     padding: var(--sp-3) var(--sp-4);
   }
   .sz-question {
-    padding: var(--sp-3);
+    padding: 14px 16px;
+  }
+  .sz-question-text {
+    font-size: 16px;
   }
 }

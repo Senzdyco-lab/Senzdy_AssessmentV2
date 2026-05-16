@@ -1,15 +1,30 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Button.jsx";
 
 export default function Intro() {
   const navigate = useNavigate();
   return (
-    <section className="sz-fade sz-section sz-intro-section">
-      <h6 className="sz-eyebrow">Development of Thai Sensory Patterns Assessment Tool</h6>
-      <p className="sz-intro-text">เลือกช่วงอายุของคุณ!</p>
-      <div className="sz-button-row">
-        <Button size="lg" onClick={() => navigate("/assessment_3_12")}>3-12</Button>
-        <Button size="lg" onClick={() => navigate("/assessment_13")}>13+</Button>
+    <section className="sz-fade sz-hero">
+      <h1 className="sz-hero-title">Discover your sensory pattern</h1>
+      <p className="sz-hero-sub">
+        เลือกช่วงอายุของคุณเพื่อเริ่มต้นแบบประเมินความต้องการรับรู้ประสาทสัมผัส
+      </p>
+      <div className="sz-age-picker">
+        <button
+          type="button"
+          className="sz-age"
+          onClick={() => navigate("/assessment_3_12")}
+        >
+          <span className="sz-age-num">3–12</span>
+          <span className="sz-age-lbl">Children</span>
+        </button>
+        <button
+          type="button"
+          className="sz-age"
+          onClick={() => navigate("/assessment_13")}
+        >
+          <span className="sz-age-num">13+</span>
+          <span className="sz-age-lbl">Teens &amp; adults</span>
+        </button>
       </div>
     </section>
   );

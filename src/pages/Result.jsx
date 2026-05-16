@@ -112,7 +112,16 @@ export default function Result() {
       )}
 
       <div className="sz-button-row">
-        <Button variant="outline" onClick={() => navigate(-1)}>Edit</Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            const path =
+              ageGroup === "3-12" ? "/assessment_3_12" : "/assessment_13";
+            navigate(path, { state: { initialAnswers: answers } });
+          }}
+        >
+          Edit
+        </Button>
         <Button onClick={saveAsPng}>
           {saving ? "Saving…" : "Save as PNG"}
         </Button>

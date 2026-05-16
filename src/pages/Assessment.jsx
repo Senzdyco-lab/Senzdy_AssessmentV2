@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import AssessmentCard from "../components/AssessmentCard.jsx";
 import Button from "../components/Button.jsx";
 import QuestionCard from "../components/QuestionCard.jsx";
@@ -10,17 +10,28 @@ import {
   isReversed,
 } from "../data/questions.js";
 
-// Generic subsection labels — overrides the per-system titles in
-// Assessment_*.json so every system shows the same two labels (no sense name).
+// Generic subsection labels — shown at the top of each subsection group.
 const SUBSECTION_HEADS = {
-  preferences: "ระดับความชอบ (PREFERENCES)",
-  arousals: "ระดับความตื่นตัว (AROUSALS)",
+  preferences: "Preferences",
+  arousals: "Arousals",
+};
+
+// Emoji icon shown in each system's header bar.
+const SYSTEM_ICONS = {
+  sight_system: "👁",
+  auditory_system: "👂",
+  olfactory_gustation_system: "👃",
+  touch_system: "✋",
+  vestibular_system: "🧘",
+  proprioceptive_system: "💪",
 };
 
 export default function Assessment({ ageGroup }) {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const survey = useMemo(() => getSurvey(ageGroup), [ageGroup]);
-  const [answers, setAnswers] = useState({});
+  // Seed from router state when the user clicks "Edit" on the Result page.
+  const [answers, setAnswers] = useState(() => state?.initialAnswers ?? {});
 
   const setAns = (id, v) => setAnswers((p) => ({ ...p, [id]: v }));
   const reset = () => setAnswers({});
@@ -51,12 +62,18 @@ export default function Assessment({ ageGroup }) {
       <p className="sz-meta">Target age: {survey.targetAge}</p>
 
       {survey.Assessment.map((system) => (
-        <AssessmentCard key={system.id} title={system.title}>
+        <AssessmentCard
+          key={system.id}
+          title={system.title}
+          icon={SYSTEM_ICONS[system.id]}
+        >
           {system.children.map((sub) => (
             <div className="sz-subsection" key={`${system.id}-${sub.id}`}>
-              <h6 className="sz-subsection-head">
-                {SUBSECTION_HEADS[sub.id] ?? sub.title}
-              </h6>
+              <div className="sz-subsection-head">
+                <span className="sz-question-section">
+                  {SUBSECTION_HEADS[sub.id] ?? sub.title}
+                </span>
+              </div>
               {sub.questions.map((q) => (
                 <QuestionCard
                   key={q.id}
