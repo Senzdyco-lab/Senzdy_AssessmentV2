@@ -3,13 +3,19 @@ import { useNavigate } from "react-router-dom";
 import AssessmentCard from "../components/AssessmentCard.jsx";
 import Button from "../components/Button.jsx";
 import QuestionCard from "../components/QuestionCard.jsx";
-import ScoreLegend from "../components/ScoreLegend.jsx";
 import {
   allQuestionIds,
   computeResult,
   getSurvey,
   isReversed,
 } from "../data/questions.js";
+
+// Generic subsection labels — overrides the per-system titles in
+// Assessment_*.json so every system shows the same two labels (no sense name).
+const SUBSECTION_HEADS = {
+  preferences: "ระดับความชอบ (PREFERENCES)",
+  arousals: "ระดับความตื่นตัว (AROUSALS)",
+};
 
 export default function Assessment({ ageGroup }) {
   const navigate = useNavigate();
@@ -44,13 +50,13 @@ export default function Assessment({ ageGroup }) {
       <h1 className="sz-page-title">{survey.title}</h1>
       <p className="sz-meta">Target age: {survey.targetAge}</p>
 
-      <ScoreLegend />
-
       {survey.Assessment.map((system) => (
         <AssessmentCard key={system.id} title={system.title}>
           {system.children.map((sub) => (
             <div className="sz-subsection" key={`${system.id}-${sub.id}`}>
-              <h6 className="sz-subsection-head">{sub.title}</h6>
+              <h6 className="sz-subsection-head">
+                {SUBSECTION_HEADS[sub.id] ?? sub.title}
+              </h6>
               {sub.questions.map((q) => (
                 <QuestionCard
                   key={q.id}
@@ -59,6 +65,7 @@ export default function Assessment({ ageGroup }) {
                   value={answers[q.id]}
                   onChange={(v) => setAns(q.id, v)}
                   scaleReversed={isReversed(sub, q)}
+                  choiceSet={q.choiceSet ?? sub.choiceSet}
                 />
               ))}
             </div>

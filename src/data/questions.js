@@ -30,8 +30,11 @@ export function getSurvey(ageGroup) {
   return SURVEYS[ageGroup] ?? SURVEYS["13+"];
 }
 
-export function getChoices(reversed) {
-  return reversed ? Choices.low : Choices.high;
+// Optional `set` selects a named variant from Choices.sets (e.g. "preference").
+// Falls back to the default high/low scale if the set is missing.
+export function getChoices(reversed, set) {
+  const source = set && Choices.sets?.[set] ? Choices.sets[set] : Choices;
+  return reversed ? source.low : source.high;
 }
 
 // Resolve scaleReversed with question-level override → subsection-level fallback.

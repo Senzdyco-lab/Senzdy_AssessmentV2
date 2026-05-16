@@ -7,7 +7,9 @@
       "Bash(cp src/assets/img/bellbell-logo.jpg public/bellbell-logo.jpg && ls public/bellbell-logo.jpg)",
       "Bash(npm run *)",
       "Bash(git check-ignore *)",
-      "Bash(node -e \"const a=require\\('./src/data/Assessment_13.json'\\);for\\(const sys of a.survey.Assessment\\){for\\(const sub of sys.children\\){console.log\\(sys.id, sub.id, sub.questions.length+' questions'\\)}}\")"
+      "Bash(node -e \"const a=require\\('./src/data/Assessment_13.json'\\);for\\(const sys of a.survey.Assessment\\){for\\(const sub of sys.children\\){console.log\\(sys.id, sub.id, sub.questions.length+' questions'\\)}}\")",
+      "Bash(node -e \"const a=require\\('./src/data/Assessment_13.json'\\);const sight=a.survey.Assessment.find\\(s=>s.id==='sight_system'\\);console.log\\(JSON.stringify\\(sight.children.map\\(c=>\\({id:c.id, scaleReversed:c.scaleReversed, qReversed:c.questions.filter\\(q=>q.scaleReversed\\).length}\\)\\), null, 2\\)\\)\")",
+      "Bash(node -e ' *)"
     ],
     "additionalDirectories": [
       "d:\\Projects\\Senzdy_AssessmentV2\\Senzdy Design System\\assets",

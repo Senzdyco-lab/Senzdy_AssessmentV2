@@ -1,7 +1,7 @@
 import { getChoices } from "../data/questions.js";
 
-export default function LikertGroup({ value, onChange, scaleReversed }) {
-  const choices = getChoices(scaleReversed);
+export default function LikertGroup({ value, onChange, scaleReversed, choiceSet }) {
+  const choices = getChoices(scaleReversed, choiceSet);
   return (
     <div className="sz-likert" role="radiogroup">
       {choices.map((c) => {
